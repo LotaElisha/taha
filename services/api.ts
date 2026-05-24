@@ -169,12 +169,20 @@ export const api = {
       }),
   },
 
-  // Push tokens stub — Sprint 7 wires the real endpoint.
-  expo: {
-    registerPushToken: async (_userId: string, _token: string): Promise<ApiResponse<void>> =>
-      ok(undefined as unknown as void),
-    sendTestNotification: async (_token: string): Promise<ApiResponse<void>> =>
-      ok(undefined as unknown as void),
+  pushTokens: {
+    register: async (token: string, platform: "web" | "expo", keys?: Record<string, string>): Promise<ApiResponse<void>> =>
+      safe(async () => {
+        await apiFetch<void>("/api/v1/push-tokens", {
+          method: "POST",
+          body: { token, platform, keys },
+        });
+      }),
+    remove: async (token: string): Promise<ApiResponse<void>> =>
+      safe(async () => {
+        await apiFetch<void>(`/api/v1/push-tokens/${encodeURIComponent(token)}`, {
+          method: "DELETE",
+        });
+      }),
   },
 };
 

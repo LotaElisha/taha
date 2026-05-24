@@ -370,7 +370,6 @@ const AgrodealerDashboard: React.FC<AgrodealerDashboardProps> = (props) => {
                 onClose={() => setReceiptOrder(null)}
                 order={receiptOrder}
                 vendorName={vendor.name}
-                whatsappConfig={vendor.whatsappConfig}
             />
         </div>
     );

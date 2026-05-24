@@ -94,16 +94,15 @@ export function usePlaceOrder() {
 export function useRegisterPushToken() {
   return useMutation({
     mutationFn: async ({
-      userId,
       token,
       platform,
+      keys,
     }: {
-      userId: string;
       token: string;
       platform: "web" | "expo";
+      keys?: Record<string, string>;
     }) => {
-      // The api shim is platform-agnostic today. Sprint 6 server adds the field.
-      const res = await api.expo.registerPushToken(userId, token);
+      const res = await api.pushTokens.register(token, platform, keys);
       if (!res.success) throw new Error(res.error || "Failed");
       return { platform };
     },

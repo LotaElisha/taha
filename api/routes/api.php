@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\PushTokenController;
 use App\Http\Controllers\Api\RefundController;
 use App\Http\Controllers\Api\ToolBookingController;
+use App\Http\Controllers\Api\WhatsappReceiptController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -79,6 +80,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Plant scan is privileged because it costs real Gemini money.
     Route::middleware('throttle:30,1')->post('/ai/plant-scan', [PlantScanController::class, 'analyze']);
+
+    // WhatsApp receipt sending — vendor/dealer sends receipt to customer.
+    Route::middleware('role:Agrodealer|Agrovet|Admin|SuperAdmin')
+        ->post('/whatsapp/receipt', [WhatsappReceiptController::class, 'send']);
 
     // Product CRUD routes
     Route::middleware('role:Agrodealer|Agrovet|Admin|SuperAdmin|CatalogManager')->group(function () {

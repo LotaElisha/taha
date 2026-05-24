@@ -3,6 +3,8 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
+/// <reference types="vitest" />
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, ".", "");
   return {
@@ -95,6 +97,13 @@ export default defineConfig(({ mode }) => {
       alias: {
         "@": path.resolve(__dirname, "."),
       },
+    },
+    test: {
+      globals: true,
+      environment: "jsdom",
+      setupFiles: ["./tests/setup.ts"],
+      include: ["**/*.{test,spec}.{ts,tsx}"],
+      exclude: ["node_modules", "dist", "api"],
     },
   };
 });

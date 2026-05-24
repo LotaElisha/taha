@@ -1,6 +1,6 @@
 import React from 'react';
-import { Order, WhatsAppConfig } from '../types';
-import { sendWhatsAppMessage } from '../services/whatsappService';
+import { Order } from '../types';
+import { apiFetch } from '../lib/apiClient';
 import { toast } from './ui/sonner';
 
 interface ReceiptModalProps {
@@ -8,7 +8,6 @@ interface ReceiptModalProps {
   onClose: () => void;
   order: Order | null;
   vendorName?: string;
-  whatsappConfig?: WhatsAppConfig;
 }
 
 const ReceiptContent: React.FC<{ order: Order, vendorName?: string }> = ({ order, vendorName }) => {
@@ -59,24 +58,29 @@ const ReceiptContent: React.FC<{ order: Order, vendorName?: string }> = ({ order
 };
 
 
-const ReceiptModal: React.FC<ReceiptModalProps> = ({ isOpen, onClose, order, vendorName, whatsappConfig }) => {
+const ReceiptModal: React.FC<ReceiptModalProps> = ({ isOpen, onClose, order, vendorName }) => {
   if (!isOpen || !order) return null;
 
   const handlePrint = () => {
     window.print();
   };
-  
+
   const handleSendWhatsApp = async () => {
     const customerPhone = prompt("Please enter the customer's phone number (e.g., 255712345678):");
-    if (customerPhone && order && whatsappConfig) {
-        // A simple text-based receipt for WhatsApp
-        const receiptText = `*Receipt from ${vendorName || 'Mkulima App'}*\n\nOrder ID: ${order.id}\nDate: ${new Date(order.date).toLocaleString()}\n\n*Items:*\n${order.items.map(i => `- ${i.product.name} (x${i.quantity})`).join('\n')}\n\n*Total: Tsh ${order.total.toLocaleString()}*\n\nThank you!`;
-        const result = await sendWhatsAppMessage(customerPhone, receiptText, whatsappConfig);
-        if (result.success) {
-            toast.success('Receipt sent successfully.');
-        } else {
-            toast.error('Failed to send receipt.');
-        }
+    if (!customerPhone || !order) return;
+    const receiptText = `*Receipt from ${vendorName || 'Mkulima App'}*\n\nOrder ID: ${order.id}\nDate: ${new Date(order.date).toLocaleString()}\n\n*Items:*\n${order.items.map(i => `- ${i.product.name} (x${i.quantity})`).join('\n')}\n\n*Total: Tsh ${order.total.toLocaleString()}*\n\nThank you!`;
+    try {
+      const res = await apiFetch<{ ok: boolean; message_id?: string; note?: string }>(
+        '/api/v1/whatsapp/receipt',
+        { method: 'POST', body: { phone: customerPhone, message: receiptText } }
+      );
+      if (res.ok) {
+        toast.success(res.note || 'Receipt sent successfully.');
+      } else {
+        toast.error('Failed to send receipt.');
+      }
+    } catch (e) {
+      toast.error('Failed to send receipt.');
     }
   };
 
@@ -129,9 +133,7 @@ const ReceiptModal: React.FC<ReceiptModalProps> = ({ isOpen, onClose, order, ven
           </div>
           <div className="p-4 bg-gray-50 dark:bg-gray-700/50 flex justify-end space-x-3 border-t dark:border-gray-700">
             <button onClick={onClose} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300">Close</button>
-            {whatsappConfig?.enabled && (
-                <button onClick={handleSendWhatsApp} className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Send WhatsApp</button>
-            )}
+            <button onClick={handleSendWhatsApp} className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600">Send WhatsApp</button>
             <button onClick={handlePrint} className="px-4 py-2 bg-brand-green text-white rounded-md hover:bg-brand-green-dark">Print Receipt</button>
           </div>
         </div>
