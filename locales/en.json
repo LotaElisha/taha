@@ -1,0 +1,130 @@
+{
+  "header": {
+    "title": "Mkulima App",
+    "searchPlaceholder": "AI Search: 'organic fertilizer for maize'...",
+    "signIn": "Sign In",
+    "switchToSwahili": "Switch to Swahili",
+    "switchToEnglish": "Switch to English"
+  },
+  "hero": {
+    "title": "Empowering the Modern Farmer",
+    "subtitle": "Your one-stop shop for quality agricultural inputs, expert advice, and smart farming tools.",
+    "cta": "Shop Now"
+  },
+  "services": {
+    "title": "Farming & Livestock Services",
+    "subtitle": "Access expert support to improve your yield and animal health.",
+    "scannerTitle": "AI Plant Scanner",
+    "scannerDescription": "Instant disease analysis and treatment advice from a photo.",
+    "scannerCta": "Scan Now",
+    "soilTitle": "Soil Testing",
+    "soilDescription": "Request a kit and get lab analysis with fertilizer recommendations.",
+    "soilCta": "Book Now",
+    "agronomistTitle": "Agronomist Help",
+    "agronomistDescription": "Book a virtual or field visit with a certified agronomist for expert advice.",
+    "agronomistCta": "Book Now",
+    "veterinaryTitle": "Veterinary Help",
+    "veterinaryDescription": "Book a consultation or farm visit for your livestock with a certified agrovet.",
+    "veterinaryCta": "Book Now",
+    "logisticsTitle": "Logistics & Delivery",
+    "logisticsDescription": "Book a truck to transport your farm inputs or harvest to the market.",
+    "logisticsCta": "Book Now",
+    "warehouseTitle": "Warehouse Booking",
+    "warehouseDescription": "Find and book secure, affordable storage facilities for your harvest.",
+    "warehouseCta": "Book Now",
+    "financeTitle": "Financial Services",
+    "financeDescription": "Access loans, insurance, and other financial products tailored for farmers.",
+    "financeCta": "Access Finance",
+    "toolRentalTitle": "Farm Tool Rentals",
+    "toolRentalDescription": "Book heavy-duty equipment like tractors and plowers on a daily basis.",
+    "toolRentalCta": "Book Now"
+  },
+  "categories": {
+    "all": "All",
+    "seeds": "Seeds",
+    "fertilizers": "Fertilizers",
+    "pesticides": "Pesticides",
+    "tools": "Tools",
+    "animalmedicine": "Animal Medicine",
+    "agrovetservices": "Agrovet Services"
+  },
+  "productGrid": {
+    "loading": "AI Assistant is searching...",
+    "loadingSub": "Finding the best products for your query.",
+    "noProducts": "No Products Found",
+    "noProductsSub": "Try adjusting your search or filter criteria. The AI may not have found a match."
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty.",
+    "deliveryOptions": "Delivery Options",
+    "paymentMethod": "Payment Method",
+    "subtotal": "Subtotal",
+    "deliveryFee": "Delivery Fee",
+    "total": "Total",
+    "checkout": "Proceed to Checkout"
+  },
+  "login": {
+    "welcome": "Welcome!",
+    "signInTo": "Sign in to Mkulima Super App",
+    "demoLogin": "Demo Login",
+    "demoInfo": "Use any email from the list below with its corresponding role.",
+    "emailLabel": "Email Address",
+    "roleLabel": "Role",
+    "signIn": "Sign In",
+    "signingIn": "Signing In...",
+    "error": "Login failed. Please check your email and password."
+  },
+  "userProfile": {
+    "backToDashboard": "Back to Dashboard",
+    "editProfile": "Edit Profile",
+    "fullName": "Full Name",
+    "emailAddress": "Email Address",
+    "phoneNumber": "Phone Number",
+    "location": "Location",
+    "notProvided": "Not provided",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel",
+    "verificationTitle": "Account Verification",
+    "verificationSub": "Complete verification to access financial services.",
+    "verificationDone": "Your account is fully verified.",
+    "purchaseSummary": "Purchase Summary",
+    "totalSpent": "Total Spent",
+    "totalOrders": "Total Orders",
+    "favoriteCategory": "Favorite Category",
+    "viewOrderHistory": "View Full Order History",
+    "logout": "Logout",
+    "kycStatus": {
+      "not_submitted": "Not Verified",
+      "rejected": "Rejected",
+      "pending": "Pending Review",
+      "verified": "Verified"
+    },
+    "kycAction": {
+      "not_submitted": "Verify Now",
+      "rejected": "Re-submit",
+      "pending": "Verification in Progress",
+      "verified": "Verified"
+    }
+  },
+  "kycModal": {
+    "title": "Identity Verification (KYC)",
+    "description": "To access financial services, we need to verify your identity. Please provide your National ID (NIDA) details.",
+    "ninLabel": "National Identification Number (NIN)",
+    "ninPlaceholder": "e.g., 19900101-12345-12345-01",
+    "idFrontLabel": "Photo of Your NIDA Card (Front)",
+    "idFrontDescription": "PNG or JPG (MAX. 5MB)",
+    "selfieLabel": "Selfie Holding Your NIDA Card",
+    "selfieDescription": "Make sure your face and ID are clear.",
+    "error": "Please fill in all fields and upload both images.",
+    "submit": "Submit for Verification",
+    "submitting": "Submitting...",
+    "successTitle": "Documents Submitted!",
+    "successDescription": "Your documents are now under review. This may take up to 48 hours. We will notify you once the process is complete.",
+    "selectedFile": "Selected: {fileName}",
+    "uploadPrompt": "Click to upload"
+  },
+  "assistant": {
+    "welcome": "Expert AI Assistant is ready. How can I help you today?"
+  }
+}

@@ -1,0 +1,19 @@
+# Cloudflare Pages — configure these in the Pages dashboard or via wrangler.toml.
+
+[build]
+command = "npm ci --legacy-peer-deps && npm run build"
+output_directory = "dist"
+
+[build.environment]
+NODE_VERSION = "22"
+NPM_FLAGS = "--legacy-peer-deps"
+
+# Required environment vars in Cloudflare Pages:
+#   VITE_API_URL=https://api.mkulima.app
+#   VITE_REVERB_APP_KEY=...
+#   VITE_REVERB_HOST=reverb.mkulima.app
+#   VITE_REVERB_PORT=443
+#   VITE_REVERB_SCHEME=https
+#   VITE_VAPID_PUBLIC=...
+#   VITE_SENTRY_DSN=...
+#   VITE_RELEASE=$CF_PAGES_COMMIT_SHA   (Cloudflare provides this var)

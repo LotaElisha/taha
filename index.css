@@ -1,0 +1,119 @@
+/* Self-hosted Inter, dropped Google Fonts CDN.
+ * Latin-only subset — English and Swahili use Latin glyphs;
+ * skipping cyrillic/vietnamese/latin-ext shrinks the bundle ~85%. */
+@import "@fontsource/inter/latin-300.css";
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/inter/latin-700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+ * Mkulima design tokens
+ * Light values on :root, dark overrides on .dark.
+ * All values are HSL triplets so Tailwind's <alpha-value>
+ * placeholder works (e.g. `bg-brand/40`).
+ * ============================================================ */
+@layer base {
+  :root {
+    /* Surfaces */
+    --bg: 60 9% 98%;          /* #fafaf9 */
+    --surface: 0 0% 100%;     /* #ffffff */
+    --surface-2: 60 5% 96%;   /* #f5f5f4 */
+
+    /* Text */
+    --fg: 24 10% 10%;         /* #1c1917 */
+    --muted: 25 5% 45%;       /* #78716c */
+
+    /* Lines */
+    --border: 30 6% 90%;      /* #e7e5e4 */
+    --ring: 142 71% 30%;      /* brand.600 */
+
+    /* Semantic */
+    --success: 142 71% 36%;
+    --warning: 27 96% 44%;
+    --danger: 0 73% 51%;
+    --info: 217 91% 56%;
+  }
+
+  .dark {
+    --bg: 0 0% 4%;            /* #0a0a0a */
+    --surface: 0 0% 9%;       /* #171717 */
+    --surface-2: 0 0% 15%;    /* #262626 */
+
+    --fg: 60 9% 98%;
+    --muted: 24 6% 64%;
+
+    --border: 0 0% 25%;
+    --ring: 142 76% 60%;
+
+    --success: 142 71% 50%;
+    --warning: 27 96% 60%;
+    --danger: 0 73% 65%;
+    --info: 217 91% 70%;
+  }
+
+  /* Make sure html/body inherit the tokens and the safe areas. */
+  html,
+  body {
+    @apply bg-bg text-fg antialiased;
+    font-family: theme("fontFamily.sans");
+    /* iOS won't bleed safe-area into the layout otherwise. */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply min-h-screen transition-colors duration-200;
+  }
+
+  /* Numeric values use tabular figures everywhere they appear in prices/quantities.
+   * Components opt in via the `.tabular` utility. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Visible, consistent focus ring for keyboard users. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-bg;
+  }
+
+  /* Respect reduced motion globally — kill transforms, keep opacity. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ============================================================
+ * Component helpers used by legacy KYC/dashboard markup until
+ * those files are re-skinned. Kept here so things don't visually
+ * regress before the per-screen refactor lands.
+ * ============================================================ */
+@layer components {
+  .input-label {
+    @apply block text-sm font-medium text-fg;
+  }
+  .input-field {
+    @apply mt-1 block w-full rounded-md border border-border bg-surface px-3 py-2 text-fg shadow-sm focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-ring;
+  }
+  .btn-primary {
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-md bg-brand-600 px-4 font-medium text-white transition-colors hover:bg-brand-700 disabled:bg-muted disabled:text-white/80;
+  }
+  .btn-secondary-outline {
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border bg-surface px-4 font-medium text-fg transition-colors hover:bg-surface-2;
+  }
+
+  /* Used by legacy LoginPage `.animate-fade-in` — keep as utility */
+  .animate-fade-in {
+    animation: fade-in 200ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+}

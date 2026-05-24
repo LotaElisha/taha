@@ -1,0 +1,3 @@
+# Cloudflare Pages — SPA fallback so deep links (/v/:id, /farmer, /admin/*)
+# all serve index.html. The service worker handles offline routing inside.
+/*    /index.html   200

@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  web:
+    name: Web (Vite + TypeScript)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci --legacy-peer-deps
+      - name: Typecheck
+        run: npm run lint
+      - name: Build
+        env:
+          VITE_API_URL: https://staging.api.mkulima.app
+        run: npm run build
+
+  api:
+    name: API (Laravel + Pest)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo, pdo_sqlite, mbstring, intl, redis, gd
+          coverage: none
+          tools: composer:v2
+      - name: Cache composer
+        uses: actions/cache@v4
+        with:
+          path: api/vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('api/composer.lock') }}
+      - run: composer install --prefer-dist --no-progress --no-interaction
+      - name: Copy env
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+      - name: Pint (style)
+        run: vendor/bin/pint --test
+      - name: Pest
+        run: vendor/bin/pest --colors=always

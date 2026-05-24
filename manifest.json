@@ -1,0 +1,18 @@
+{
+  "short_name": "Mkulima App",
+  "name": "Mkulima Super App",
+  "description": "A multivendor marketplace ecommerce platform designed for agricultural inputs. It connects farmers with suppliers of seeds, fertilizers, tools, and more, and includes an AI-powered crop advisor.",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#556B2F",
+  "background_color": "#F5F5DC",
+  "scope": "/"
+}

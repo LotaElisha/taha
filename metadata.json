@@ -1,0 +1,9 @@
+{
+  "name": "TAHA",
+  "description": "A multivendor marketplace ecommerce platform designed for agricultural inputs. It connects farmers with suppliers of seeds, fertilizers, tools, and more, and includes an AI-powered crop advisor.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

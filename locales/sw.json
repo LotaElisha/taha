@@ -1,0 +1,130 @@
+{
+  "header": {
+    "title": "Mkulima App",
+    "searchPlaceholder": "Tafuta na AI: 'mbolea ya kikaboni kwa mahindi'...",
+    "signIn": "Ingia",
+    "switchToSwahili": "Badilisha iwe Kiswahili",
+    "switchToEnglish": "Badilisha iwe Kiingereza"
+  },
+  "hero": {
+    "title": "Kumwezesha Mkulima wa Kisasa",
+    "subtitle": "Duka lako moja la pembejeo bora za kilimo, ushauri wa kitaalam, na zana za kilimo janja.",
+    "cta": "Nunua Sasa"
+  },
+  "services": {
+    "title": "Huduma za Kilimo na Mifugo",
+    "subtitle": "Pata usaidizi wa kitaalamu ili kuboresha mazao na afya ya wanyama wako.",
+    "scannerTitle": "Skena ya Mimea ya AI",
+    "scannerDescription": "Uchambuzi wa magonjwa papo hapo na ushauri wa matibabu kutoka kwa picha.",
+    "scannerCta": "Skeni Sasa",
+    "soilTitle": "Upimaji wa Udongo",
+    "soilDescription": "Omba zana na upate uchambuzi wa maabara na mapendekezo ya mbolea.",
+    "soilCta": "Weka Nafasi Sasa",
+    "agronomistTitle": "Msaada wa Mtaalamu wa Kilimo",
+    "agronomistDescription": "Weka miadi ya mtandaoni au shambani na mtaalamu wa kilimo aliyeidhinishwa.",
+    "agronomistCta": "Weka Nafasi Sasa",
+    "veterinaryTitle": "Msaada wa Mifugo",
+    "veterinaryDescription": "Weka miadi ya ushauri au shambani kwa mifugo yako na daktari aliyeidhinishwa.",
+    "veterinaryCta": "Weka Nafasi Sasa",
+    "logisticsTitle": "Usafirishaji na Uwasilishaji",
+    "logisticsDescription": "Weka nafasi ya lori kusafirisha pembejeo zako au mavuno sokoni.",
+    "logisticsCta": "Weka Nafasi Sasa",
+    "warehouseTitle": "Uhifadhi Ghalani",
+    "warehouseDescription": "Tafuta na weka nafasi ya ghala salama na za bei nafuu kwa ajili ya mavuno yako.",
+    "warehouseCta": "Weka Nafasi Sasa",
+    "financeTitle": "Huduma za Kifedha",
+    "financeDescription": "Pata mikopo, bima, na huduma zingine za kifedha maalum kwa wakulima.",
+    "financeCta": "Pata Huduma za Kifedha",
+    "toolRentalTitle": "Kukodisha Zana za Shamba",
+    "toolRentalDescription": "Weka nafasi ya zana nzito kama matrekta na majembe ya kulimia kwa siku.",
+    "toolRentalCta": "Weka Nafasi Sasa"
+  },
+  "categories": {
+    "all": "Zote",
+    "seeds": "Mbegu",
+    "fertilizers": "Mbolea",
+    "pesticides": "Dawa za Wadudu",
+    "tools": "Zana",
+    "animalmedicine": "Dawa za Mifugo",
+    "agrovetservices": "Huduma za Mifugo"
+  },
+  "productGrid": {
+    "loading": "Msaidizi wa AI anatafuta...",
+    "loadingSub": "Inatafuta bidhaa bora zaidi kwa ajili yako.",
+    "noProducts": "Hakuna Bidhaa Zilopatikana",
+    "noProductsSub": "Jaribu kubadilisha maneno ya utafutaji au kichujio chako."
+  },
+  "cart": {
+    "title": "Kikapu cha Manunuzi",
+    "empty": "Kikapu chako ni kitupu.",
+    "deliveryOptions": "Njia za Usafirishaji",
+    "paymentMethod": "Njia ya Malipo",
+    "subtotal": "Jumla ndogo",
+    "deliveryFee": "Gharama ya Usafirishaji",
+    "total": "Jumla Kuu",
+    "checkout": "Endelea Kulipa"
+  },
+  "login": {
+    "welcome": "Karibu!",
+    "signInTo": "Ingia kwenye Mkulima Super App",
+    "demoLogin": "Ingia kwa Majaribio",
+    "demoInfo": "Tumia barua pepe yoyote kutoka kwenye orodha hapa chini na jukumu lake.",
+    "emailLabel": "Anwani ya Barua Pepe",
+    "roleLabel": "Jukumu",
+    "signIn": "Ingia",
+    "signingIn": "Unaingia...",
+    "error": "Imeshindwa kuingia. Tafadhali angalia barua pepe na nenosiri lako."
+  },
+  "userProfile": {
+    "backToDashboard": "Rudi kwenye Dashibodi",
+    "editProfile": "Badilisha Wasifu",
+    "fullName": "Jina Kamili",
+    "emailAddress": "Anwani ya Barua Pepe",
+    "phoneNumber": "Namba ya Simu",
+    "location": "Mahali",
+    "notProvided": "Haijatolewa",
+    "saveChanges": "Hifadhi Mabadiliko",
+    "cancel": "Ghairi",
+    "verificationTitle": "Uthibitisho wa Akaunti",
+    "verificationSub": "Kamilisha uthibitisho ili upate huduma za kifedha.",
+    "verificationDone": "Akaunti yako imethibitishwa kikamilifu.",
+    "purchaseSummary": "Muhtasari wa Manunuzi",
+    "totalSpent": "Jumla ya Matumizi",
+    "totalOrders": "Jumla ya Oda",
+    "favoriteCategory": "Aina Unayopenda",
+    "viewOrderHistory": "Tazama Historia ya Oda",
+    "logout": "Toka",
+    "kycStatus": {
+      "not_submitted": "Haijathibitishwa",
+      "rejected": "Imekataliwa",
+      "pending": "Inasubiri Mapitio",
+      "verified": "Imethibitishwa"
+    },
+    "kycAction": {
+      "not_submitted": "Thibitisha Sasa",
+      "rejected": "Wasilisha Tena",
+      "pending": "Uthibitisho Unaendelea",
+      "verified": "Imethibitishwa"
+    }
+  },
+  "kycModal": {
+    "title": "Uthibitisho wa Utambulisho (KYC)",
+    "description": "Ili kupata huduma za kifedha, tunahitaji kuthibitisha utambulisho wako. Tafadhali toa maelezo ya Kitambulisho chako cha Taifa (NIDA).",
+    "ninLabel": "Namba ya Utambulisho wa Taifa (NIN)",
+    "ninPlaceholder": "k.m., 19900101-12345-12345-01",
+    "idFrontLabel": "Picha ya Kadi yako ya NIDA (Mbele)",
+    "idFrontDescription": "PNG au JPG (Isizidi 5MB)",
+    "selfieLabel": "Selfie Ukishikilia Kadi yako ya NIDA",
+    "selfieDescription": "Hakikisha uso wako na kitambulisho vinaonekana vizuri.",
+    "error": "Tafadhali jaza sehemu zote na pakia picha zote mbili.",
+    "submit": "Wasilisha kwa Uthibitisho",
+    "submitting": "Inawasilisha...",
+    "successTitle": "Nyaraka Zimewasilishwa!",
+    "successDescription": "Nyaraka zako sasa zinapitiwa. Hii inaweza kuchukua hadi saa 48. Tutakujulisha mchakato utakapokamilika.",
+    "selectedFile": "Imechaguliwa: {fileName}",
+    "uploadPrompt": "Bofya ili kupakia"
+  },
+  "assistant": {
+    "welcome": "Msaidizi wa AI yuko tayari. Ninawezaje kukusaidia leo?"
+  }
+}
