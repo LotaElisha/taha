@@ -89,10 +89,10 @@ export function ServiceTiles(props: ServiceTilesProps) {
             type="button"
             onClick={t.onClick}
             className={cn(
-              "group flex flex-col items-start gap-3 rounded-2xl border border-border/80 bg-surface p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              "group flex flex-col items-start gap-3 rounded-2xl border border-border/80 bg-surface p-4 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-md active:scale-[0.98] active:border-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             )}
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-50 to-brand-100 text-brand-700 dark:from-brand-950/40 dark:to-brand-800/20 dark:text-brand-200 transition-transform duration-300 group-hover:scale-110 shadow-sm shrink-0">
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-tr from-brand-50 to-brand-100 text-brand-700 dark:from-brand-950/40 dark:to-brand-800/20 dark:text-brand-200 transition-transform duration-300 group-hover:scale-110 group-active:scale-95 shadow-sm shrink-0">
               {t.icon}
             </span>
             <div className="space-y-1">

@@ -19,6 +19,7 @@ import { type CategoryValue } from './components/marketplace/CategoryChips';
 import { ProductDetailDrawer } from './components/marketplace/ProductDetailDrawer';
 import { CartDrawer } from './components/marketplace/CartDrawer';
 import { GuestCheckoutDrawer } from './components/marketplace/GuestCheckoutDrawer';
+import { SearchDrawer } from './components/marketplace/SearchDrawer';
 import { OfflineBanner } from './components/feedback/OfflineBanner';
 import { HomeView } from './pages/public/HomeView';
 import { RouteFallback } from './components/feedback/RouteFallback';
@@ -76,7 +77,7 @@ const App: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [isGuestCheckoutOpen, setIsGuestCheckoutOpen] = useState<boolean>(false);
-  
+
   // State for service modals
   const [isScannerOpen, setIsScannerOpen] = useState(false);
   const [isSoilTestModalOpen, setIsSoilTestModalOpen] = useState(false);
@@ -463,6 +464,7 @@ interface PublicSurfaceProps {
 const PublicSurface: React.FC<PublicSurfaceProps> = (p) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
   // Derive bottom-nav active id from the URL so it stays in sync with the route.
   const activeNavId: string =
@@ -506,11 +508,8 @@ const PublicSurface: React.FC<PublicSurfaceProps> = (p) => {
                 <button
                   type="button"
                   aria-label="Search"
-                  onClick={() => {
-                    const q = window.prompt('Search products');
-                    if (q !== null) p.onSearchSubmit(q);
-                  }}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-fg"
+                  onClick={() => setIsSearchOpen(true)}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-2 text-fg active:scale-95 transition-transform"
                 >
                   <SearchIcon />
                 </button>
@@ -518,7 +517,7 @@ const PublicSurface: React.FC<PublicSurfaceProps> = (p) => {
                   type="button"
                   aria-label="Cart"
                   onClick={() => p.setIsCartOpen(true)}
-                  className="relative flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-fg"
+                  className="relative flex h-11 w-11 items-center justify-center rounded-full bg-surface-2 text-fg active:scale-95 transition-transform"
                 >
                   <BagIcon />
                   {p.cartCount > 0 ? (
@@ -606,6 +605,12 @@ const PublicSurface: React.FC<PublicSurfaceProps> = (p) => {
         onPlaceOrder={p.onPlaceGuestOrder}
         cartItems={p.cartItems}
         deliveryOption={p.selectedDeliveryOption}
+      />
+
+      <SearchDrawer
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onSubmit={p.onSearchSubmit}
       />
 
       <ProductDetailDrawer

@@ -107,6 +107,32 @@ export function AdminSurface(p: AdminSurfaceProps) {
     { to: "/admin/audit", label: "Audit log", icon: <FileIcon /> },
   ];
 
+  // Mobile bottom nav — 5 primary tabs (Overview, KYC, Orders, Catalog, More).
+  // The rest remain accessible via the desktop sidebar.
+  const adminNav = React.useMemo(() => {
+    const moreLink = { to: "/admin/users", label: "More", icon: <MoreIcon /> };
+    const primary = [
+      links.find((l) => l.to === "/admin")!,
+      links.find((l) => l.to === "/admin/kyc")!,
+      links.find((l) => l.to === "/admin/orders")!,
+      links.find((l) => l.to === "/admin/catalog")!,
+      moreLink,
+    ];
+    return primary.map((l) => ({
+      id: l.to.replace("/admin", "").replace("/", "") || "overview",
+      label: l.label,
+      icon: l.icon,
+      onClick: () => navigate(l.to),
+    }));
+  }, []);
+
+  const adminActiveNavId = React.useMemo(() => {
+    const match = adminNav.find((n) =>
+      n.id !== "more" && (location.pathname.startsWith("/admin/" + n.id) || (n.id === "overview" && location.pathname === "/admin"))
+    );
+    return match?.id ?? "more";
+  }, [location.pathname, adminNav]);
+
   return (
     <AppShell
       appBar={
@@ -135,6 +161,8 @@ export function AdminSurface(p: AdminSurfaceProps) {
           }
         />
       }
+      navItems={adminNav}
+      activeNavId={adminActiveNavId}
       sidebar={
         <nav className="flex h-full flex-col gap-1 p-3">
           {links.map((l) => {
@@ -434,3 +462,4 @@ function CashIcon() { return (<svg viewBox="0 0 24 24" className="h-4 w-4" fill=
 function FileIcon() { return (<svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" /><polyline points="14 2 14 8 20 8" /></svg>); }
 function FlagIcon() { return (<svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M4 22V4" /><path d="M4 4h13l-2 4 2 4H4" /></svg>); }
 function RotateIcon() { return (<svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M3 12a9 9 0 0 1 15-6.7L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15 6.7L3 16" /><path d="M3 21v-5h5" /></svg>); }
+function MoreIcon() { return (<svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden><circle cx="12" cy="5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="19" r="1.5" fill="currentColor"/></svg>); }

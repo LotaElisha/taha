@@ -30,7 +30,7 @@ export function ProductCardV2({
   return (
     <article
       className={cn(
-        "group flex flex-col overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:border-brand-300/40 dark:hover:border-brand-700/40",
+        "group flex flex-col overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:border-brand-300/40 dark:hover:border-brand-700/40 active:scale-[0.98] active:shadow-md",
         className
       )}
     >
@@ -94,7 +94,7 @@ export function ProductCardV2({
               onAddToCart?.(product, 1);
             }}
             aria-label={`Add ${product.name} to cart`}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-white transition-all duration-300 hover:bg-brand-700 hover:scale-110 active:scale-95 shadow-sm shadow-brand-600/30 hover:shadow-md hover:shadow-brand-600/40 disabled:bg-muted disabled:shadow-none disabled:scale-100 disabled:text-white/80"
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-600 text-white transition-all duration-300 hover:bg-brand-700 hover:scale-110 active:scale-95 shadow-sm shadow-brand-600/30 hover:shadow-md hover:shadow-brand-600/40 disabled:bg-muted disabled:shadow-none disabled:scale-100 disabled:text-white/80"
           >
             <PlusIcon />
           </button>

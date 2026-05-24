@@ -105,7 +105,7 @@ export function CartDrawer({
             type="button"
             onClick={onClose}
             aria-label="Close cart"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-fg"
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-surface-2 text-fg active:scale-95 transition-transform"
           >
             <XIcon />
           </button>
@@ -233,7 +233,7 @@ function CartRow({
           <button
             type="button"
             onClick={onRemove}
-            className="text-xs font-medium text-muted hover:text-danger"
+            className="px-2 py-1.5 text-xs font-medium text-muted hover:text-danger active:text-danger rounded-md active:bg-surface-2 transition-colors"
           >
             Remove
           </button>
@@ -250,23 +250,23 @@ function CartRow({
 
 function Stepper({ value, onChange }: { value: number; onChange: (q: number) => void }) {
   return (
-    <div className="inline-flex h-7 items-center rounded-md border border-border">
+    <div className="inline-flex h-11 items-center rounded-md border border-border">
       <button
         type="button"
         aria-label="Decrease"
         onClick={() => onChange(Math.max(1, value - 1))}
-        className="flex h-7 w-7 items-center justify-center text-fg"
+        className="flex h-11 w-11 items-center justify-center text-fg active:bg-surface-2 rounded-l-md transition-colors"
       >
         <MinusIcon />
       </button>
-      <span className="tabular min-w-6 text-center text-xs font-medium">
+      <span className="tabular min-w-8 text-center text-sm font-medium px-2">
         {value}
       </span>
       <button
         type="button"
         aria-label="Increase"
         onClick={() => onChange(value + 1)}
-        className="flex h-7 w-7 items-center justify-center text-fg"
+        className="flex h-11 w-11 items-center justify-center text-fg active:bg-surface-2 rounded-r-md transition-colors"
       >
         <PlusIcon />
       </button>

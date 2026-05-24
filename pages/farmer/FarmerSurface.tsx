@@ -143,7 +143,7 @@ export function FarmerSurface(p: FarmerSurfaceProps) {
                 type="button"
                 aria-label="Cart"
                 onClick={() => p.setIsCartOpen(true)}
-                className="relative flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-fg"
+                className="relative flex h-11 w-11 items-center justify-center rounded-full bg-surface-2 text-fg active:scale-95 transition-transform"
               >
                 <BagIcon />
                 {cartCount > 0 ? (
