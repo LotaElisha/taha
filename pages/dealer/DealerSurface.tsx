@@ -588,13 +588,19 @@ function OrdersList({
                 <Button
                   size="sm"
                   variant="primary"
-                  onClick={() =>
-                    setOrders((prev) =>
-                      prev.map((x) =>
-                        x.id === o.id ? { ...x, status: "Shipped" } : x
-                      )
-                    )
-                  }
+                  onClick={async () => {
+                    const res = await api.orders.updateStatus(o.id, "Shipped");
+                    if (res.success && res.data) {
+                      setOrders((prev) =>
+                        prev.map((x) =>
+                          x.id === o.id ? res.data! : x
+                        )
+                      );
+                      toast.success("Order confirmed and marked as shipped.");
+                    } else {
+                      toast.error(res.error || "Failed to confirm order.");
+                    }
+                  }}
                 >
                   Confirm
                 </Button>

@@ -10,7 +10,7 @@
  */
 
 import { apiFetch } from "../lib/apiClient";
-import { Product, Order, User, CartItem } from "../types";
+import { Product, Order, User, CartItem, LogisticsBooking } from "../types";
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -158,6 +158,15 @@ export const api = {
         const res = await apiFetch<Paginated<Order>>("/api/v1/orders/mine");
         return res.data;
       }),
+
+    updateStatus: async (id: string, status: Order["status"]): Promise<ApiResponse<Order>> =>
+      safe(async () => {
+        const res = await apiFetch<OneOf<Order>>(`/api/v1/orders/${id}/status`, {
+          method: "PATCH",
+          body: { status },
+        });
+        return res.data;
+      }),
   },
 
   users: {
@@ -166,6 +175,36 @@ export const api = {
         const me = await api.auth.me();
         if (!me) throw new Error("Not authenticated");
         return me;
+      }),
+  },
+
+  kyc: {
+    submit: async (form: FormData): Promise<ApiResponse<{ message: string }>> =>
+      safe(async () => {
+        const res = await apiFetch<{ message: string }>("/api/v1/kyc/submit", {
+          method: "POST",
+          body: form,
+        });
+        return res;
+      }),
+  },
+
+  logistics: {
+    accept: async (id: string, providerId: string): Promise<ApiResponse<LogisticsBooking>> =>
+      safe(async () => {
+        const res = await apiFetch<OneOf<LogisticsBooking>>(`/api/v1/logistics/${id}/accept`, {
+          method: "POST",
+          body: { provider_id: providerId },
+        });
+        return res.data;
+      }),
+    advance: async (id: string, status: LogisticsBooking["status"]): Promise<ApiResponse<LogisticsBooking>> =>
+      safe(async () => {
+        const res = await apiFetch<OneOf<LogisticsBooking>>(`/api/v1/logistics/${id}/status`, {
+          method: "PATCH",
+          body: { status },
+        });
+        return res.data;
       }),
   },
 

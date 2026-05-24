@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Product, CartItem, Agrodealer, Review, Order, Agrovet, DeliveryOption, PaymentMethod, PaymentGatewayConfig, LogisticsBooking, Tool, ToolBooking, LogisticsProvider } from './types';
-import { mockReviews, mockOrders, mockLogisticsBookings, mockTools, mockToolBookings } from './data/mockData';
+// All data now fetched from Laravel API. Mock data remains in data/mockData for
+// local dev seeding, but production builds source from the database.
 import { useProducts } from './hooks/queries';
 import Footer from './components/Footer';
 import SmartAssistantWidget from './components/CropAdvisorWidget';
@@ -63,11 +64,11 @@ const App: React.FC = () => {
   useEffect(() => {
     if (apiProducts) setProducts(apiProducts);
   }, [apiProducts]);
-  const [reviews, setReviews] = useState<Review[]>(mockReviews);
-  const [orders, setOrders] = useState<Order[]>(mockOrders);
-  const [logisticsBookings, setLogisticsBookings] = useState<LogisticsBooking[]>(mockLogisticsBookings);
-  const [tools, setTools] = useState<Tool[]>(mockTools);
-  const [toolBookings, setToolBookings] = useState<ToolBooking[]>(mockToolBookings);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [logisticsBookings, setLogisticsBookings] = useState<LogisticsBooking[]>([]);
+  const [tools, setTools] = useState<Tool[]>([]);
+  const [toolBookings, setToolBookings] = useState<ToolBooking[]>([]);
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);

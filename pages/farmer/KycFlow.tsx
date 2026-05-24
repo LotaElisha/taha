@@ -6,6 +6,7 @@ import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { toast } from "../../components/ui/sonner";
 import { EmptyState } from "../../components/feedback/EmptyState";
+import { api } from "../../services/api";
 import { cn } from "../../lib/utils";
 
 interface KycFlowProps {
@@ -92,24 +93,33 @@ export function KycFlow({ onDone }: KycFlowProps) {
     (step === 3 && !!selfie) ||
     (step === 4 && consent);
 
-  const onPrimary = () => {
+  const onPrimary = async () => {
     if (step < 4) {
       setStep(((step + 1) as StepIdx));
       return;
     }
     setIsSubmitting(true);
-    setTimeout(() => {
-      console.log("KYC submitted", {
-        nin,
-        idFront: idFront?.name,
-        idBack: idBack?.name,
-        selfie: selfie?.name,
-      });
-      updateUserAuthData({ kycStatus: "Pending", nin });
+    try {
+      const form = new FormData();
+      form.append("nin", nin.replace(/\D/g, ""));
+      if (idFront) form.append("id_front", idFront);
+      if (idBack) form.append("id_back", idBack);
+      if (selfie) form.append("selfie", selfie);
+      form.append("consent", String(consent));
+
+      const res = await api.kyc.submit(form);
+      if (res.success) {
+        updateUserAuthData({ kycStatus: "Pending", nin });
+        setSubmitted(true);
+        toast.success("KYC submitted for review.");
+      } else {
+        toast.error(res.error || "KYC submission failed. Please try again.");
+      }
+    } catch (e) {
+      toast.error("Network error. Please check your connection and try again.");
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-      toast.success("KYC submitted for review.");
-    }, 1200);
+    }
   };
 
   const onBack = () => {

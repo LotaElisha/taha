@@ -7,9 +7,11 @@ import { StatusChip } from "../../components/feedback/StatusChip";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../components/ui/tabs";
+import { toast } from "../../components/ui/sonner";
 import { useAuth } from "../../context/AuthContext";
 import { LogisticsProvider, LogisticsBooking } from "../../types";
 import { cn, formatRelativeDate } from "../../lib/utils";
+import { api } from "../../services/api";
 
 interface LogisticsSurfaceProps {
   provider: LogisticsProvider;
@@ -223,12 +225,23 @@ function JobsView({
     next: LogisticsBooking[] | ((prev: LogisticsBooking[]) => LogisticsBooking[])
   ) => void;
 }) {
-  const accept = (id: string) =>
-    setBookings((prev) =>
-      prev.map((b) => (b.id === id ? { ...b, providerId, status: "Confirmed" } : b))
-    );
-  const advance = (id: string, to: LogisticsBooking["status"]) =>
-    setBookings((prev) => prev.map((b) => (b.id === id ? { ...b, status: to } : b)));
+  const accept = async (id: string) => {
+    const res = await api.logistics.accept(id, providerId);
+    if (res.success && res.data) {
+      setBookings((prev) => prev.map((b) => (b.id === id ? res.data! : b)));
+      toast.success("Job accepted.");
+    } else {
+      toast.error(res.error || "Failed to accept job.");
+    }
+  };
+  const advance = async (id: string, to: LogisticsBooking["status"]) => {
+    const res = await api.logistics.advance(id, to);
+    if (res.success && res.data) {
+      setBookings((prev) => prev.map((b) => (b.id === id ? res.data! : b)));
+    } else {
+      toast.error(res.error || "Failed to update status.");
+    }
+  };
 
   return (
     <div className="mx-auto w-full max-w-3xl px-4 py-4">
